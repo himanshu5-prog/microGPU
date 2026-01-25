@@ -1,4 +1,4 @@
-#ifndef SRC_WARP_WARP_HH
+#ifndef SRC_WARP_WARP_HH_
 #define SRC_WARP_WARP_HH_
 
 #include<iostream>
@@ -31,6 +31,21 @@ struct Instruction {
 
 };
 
+struct reconvergencePoint {
+    int pc;
+    ActiveMask mask;
+
+    reconvergencePoint(int pc_, const ActiveMask& mask_)
+        : pc(pc_), mask(mask_) {}
+    reconvergencePoint() : pc(0), mask() {}
+};
+
+enum WarpState {
+    READY,
+    RUNNING,
+    STALLED
+};
+
 using ThreadGroup = std::array<Thread*, WARP_THREAD_COUNT>;
 using ActiveMask = std::bitset<WARP_THREAD_COUNT>;
 
@@ -39,13 +54,20 @@ class Warp {
     int pc;
     ThreadGroup threads;
     ActiveMask activeMask;
+    Instruction currentInstruction;
+    std::vector<reconvergencePoint> reconvergenceStack;
+    WarpState state;
 
     public:
     Warp();
-    Warp(int warpId, const ThreadGroup& threadGroup);
+    Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState = WarpState::READY);
+
+     // Getter and Setter methods
     int getId() const;
     int getPc() const;
     void setPc(int pc_);
+    void setCurrentInstruction(const Instruction& instr);
+    Instruction getCurrentInstruction() const;
 
     const ActiveMask& getActiveMask() const;
 
