@@ -12,8 +12,8 @@
 using RegisterFile = std::array<int, THREAD_REGISTER_COUNT>;
 
 enum ThreadState {
-    ACTIVE,
-    INACTIVE
+    ACTIVE, // Thread is active and can execute instructions
+    INACTIVE // Thread is inactive and should not execute instructions
 };
 
 class Thread {
