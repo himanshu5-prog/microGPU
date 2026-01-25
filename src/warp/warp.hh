@@ -8,8 +8,10 @@
 #include<bitset>
 #include "../thread/thread.hh"
 
+// Define the number of threads in a warp
 #define WARP_THREAD_COUNT 32
 
+// Instruction types enumeration
 enum InstructionType {
     ADD,
     SUB,
@@ -31,6 +33,7 @@ struct Instruction {
 
 };
 
+// Reconvergence point structure
 struct reconvergencePoint {
     int pc;
     ActiveMask mask;
@@ -40,13 +43,17 @@ struct reconvergencePoint {
     reconvergencePoint() : pc(0), mask() {}
 };
 
+// Warp state enumeration
 enum WarpState {
     READY,
     RUNNING,
     STALLED
 };
 
+// Type alias for a group of threads in a warp
 using ThreadGroup = std::array<Thread*, WARP_THREAD_COUNT>;
+
+// Type alias for the active mask of threads in a warp
 using ActiveMask = std::bitset<WARP_THREAD_COUNT>;
 
 class Warp {
