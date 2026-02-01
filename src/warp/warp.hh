@@ -11,6 +11,10 @@
 // Define the number of threads in a warp
 #define WARP_THREAD_COUNT 32
 
+// Type alias for the active mask of threads in a warp
+using ActiveMask = std::bitset<WARP_THREAD_COUNT>;
+
+
 // Instruction types enumeration
 enum InstructionType {
     ADD,
@@ -52,9 +56,6 @@ enum WarpState {
 
 // Type alias for a group of threads in a warp
 using ThreadGroup = std::array<Thread*, WARP_THREAD_COUNT>;
-
-// Type alias for the active mask of threads in a warp
-using ActiveMask = std::bitset<WARP_THREAD_COUNT>;
 
 class Warp {
     int id;
