@@ -37,7 +37,8 @@ class ComputeUnit {
         int getSmId() const { return smId; }
 
         // Print method for debugging
-        void printId() const { std::cout << "ComputeId :: ComputeUnit ID: " << smId << std::endl; }
+        void printId() const { std::cout << "(ComputeUnit) ComputeUnit ID: " << smId << std::endl; }
+        
 };
 
 #endif // COMPUTEUNIT_HH
