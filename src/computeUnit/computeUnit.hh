@@ -15,6 +15,14 @@ enum SMState {
     ERROR
 };
 
+enum PipelineStage {
+    NOT_STARTED,
+    STAGE_0,
+    STAGE_1,
+    STAGE_2,
+    STAGE_3,
+    DONE
+};
 class ComputeUnit {
     std::vector<Warp> warps;
     int smId;
