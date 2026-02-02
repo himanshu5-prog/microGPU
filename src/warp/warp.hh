@@ -55,7 +55,7 @@ enum WarpState {
 };
 
 // Type alias for a group of threads in a warp
-using ThreadGroup = std::array<Thread*, WARP_THREAD_COUNT>;
+using ThreadGroup = std::array<Thread, WARP_THREAD_COUNT>;
 
 class Warp {
     int id;

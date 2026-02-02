@@ -3,7 +3,6 @@
 Warp::Warp() : id(0), pc(0), state(WarpState::READY) {
     std::cout << "Warp created with id: " << id << std::endl;
     activeMask.set();  // All threads active by default 
-    threads.fill(nullptr);
 }
 
 Warp::Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState)
