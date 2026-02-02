@@ -1,6 +1,11 @@
  MicroGPU
 
 
- I am creating a simple functional model of GPU to understand its architecture. I have started with class definition of thread and warp and later added compute units. Currently the GPU is getting initialised with multiple compute units and is compile clean.
+ I am creating a simple functional model of GPU to understand its architecture. I have started with class definition of thread and warp and later added compute units.
+
+ Currently, microGPU is able to accept warps in global collection and then schedule to computeUnits. 
+
+ TODO:
+ Create functionality in compute unit to process the warps and mark it complete and remove it from its own warp collection.
 
  I will be adding more functionality and update this README.
