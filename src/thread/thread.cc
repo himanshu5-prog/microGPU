@@ -1,7 +1,7 @@
 #include "thread.hh"
 
 Thread::Thread() : id(0), state(INACTIVE) {
-    std::cout << "Thread created with id: " << id << std::endl;
+    std::cout << "(Constructor) Thread created with id: " << id << std::endl;
 }
 
 Thread::Thread(int threadId, ThreadState threadState){
