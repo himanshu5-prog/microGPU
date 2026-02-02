@@ -1,5 +1,11 @@
 #include "microGPU/ugpu.hh"
 
+// To do:
+/*
+1. Create warp and add to global collection in microGPU class.
+2. Assign warps to compute unit from global collection ( microGPU class method).
+3. SM processes the warp ( maybe just print warp id for now).
+*/
 int main(){
     MicroGPU ugpu;
     ugpu.init();
