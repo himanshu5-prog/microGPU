@@ -23,6 +23,11 @@ class MicroGPU {
         void assignWarpToSM(int smId, const Warp &warp);
         void addWarpToGlobalCollection(const Warp &warp);
         int getGlobalWarpCollectionSize() const;
+        void performWarpScheduling();
+
+        // test method
+        void createGlobalWarpCollectionTest();
+        void printComputeUnitStatus() const;
 
 
 };
