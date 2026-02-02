@@ -3,4 +3,5 @@ src/*.cc \
 src/computeUnit/*.cc \
 src/warp/*.cc \
 src/microGPU/*.cc \
--o tinyGpu
+src/thread/*.cc \
+-o microGPU
