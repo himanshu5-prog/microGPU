@@ -9,3 +9,6 @@
  Create functionality in compute unit to process the warps and mark it complete and remove it from its own warp collection.
 
  I will be adding more functionality and update this README.
+
+
+ ![GPU execution hierarchy](doc/image/thread_warp_compute_unit_gpu.png)
