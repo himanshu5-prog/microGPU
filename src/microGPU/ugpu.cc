@@ -1,12 +1,13 @@
 #include "ugpu.hh"
 
 MicroGPU::MicroGPU() {
-    std::cout << "(microGPU) MicroGPU initialized with " << SM_COUNT << " SMs." << std::endl;
+    currentCycle = 0;
+    std::cout << "(microGPU) MicroGPU initialized with " << CU_COUNT << " SMs." << std::endl;
 }
 
 void MicroGPU::init() {
     // Initialize each SM
-    for (int i = 0; i < SM_COUNT; ++i) {
+    for (int i = 0; i < CU_COUNT; ++i) {
         computeUnit[i].setSmId(i);
         computeUnit[i].setState(IDLE);
         computeUnit[i].printId();
@@ -37,12 +38,16 @@ void MicroGPU::createGlobalWarpCollectionTest() {
 }
 
 void MicroGPU::performWarpScheduling() {
+    // Currently a simple implementation - All warps are assigned to compute units in round-robin fashion in single cycle
     // Simple round-robin scheduling of warps to SMs
     int smIndex = 0;
     for (const auto &warp : globalWarpCollection) {
         assignWarpToSM(smIndex, warp);
-        smIndex = (smIndex + 1) % SM_COUNT;
+        smIndex = (smIndex + 1) % CU_COUNT;
     }
+    // Clear global collection after assignment
+    globalWarpCollection.clear();
+    std::cout << "(microGPU) Warp scheduling completed." << std::endl;
 }
 
 void MicroGPU::assignWarpToSM(int smId, const Warp &warp) {
@@ -56,4 +61,22 @@ void MicroGPU::printComputeUnitStatus() const {
         std::cout << "  State: " << (sm.getState() == IDLE ? "IDLE" : sm.getState() == BUSY ? "BUSY" : "ERROR") << std::endl;
         std::cout << "  Warps assigned: " << sm.getWarpCollectionSize() << std::endl;
     }
+}
+
+// Check if all compute units are done processing their warps
+bool MicroGPU::allComputeUnitsDone() const {
+    for (const auto &cu : computeUnit) {
+        if (cu.getWarpCollectionSize() > 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool MicroGPU::allWarpsCompleted() const {
+    if (globalWarpCollection.empty() && allComputeUnitsDone()) {
+        // No warp pending in global collection and all compute units are done processing warps to completion
+        return true;
+    }
+    return false;
 }

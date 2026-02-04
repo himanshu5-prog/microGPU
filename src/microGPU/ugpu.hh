@@ -9,13 +9,15 @@
 #include "../warp/warp.hh"
 #include "../computeUnit/computeUnit.hh"
 
-#define SM_COUNT 16
+// Number of Compute Units in microGPU
+#define CU_COUNT 16
 
 class MicroGPU { 
    std::vector <Warp> globalWarpCollection;
 
    // Collection of Streaming Multiprocessors
-   std::array<ComputeUnit, SM_COUNT> computeUnit;
+   std::array<ComputeUnit, CU_COUNT> computeUnit;
+   int currentCycle;
 
    public:
         MicroGPU();
@@ -23,11 +25,15 @@ class MicroGPU {
         void assignWarpToSM(int smId, const Warp &warp);
         void addWarpToGlobalCollection(const Warp &warp);
         int getGlobalWarpCollectionSize() const;
+        int getCurrentCycle() const { return currentCycle; }
+        void incrementCycle() { currentCycle++; }
         void performWarpScheduling();
 
         // test method
         void createGlobalWarpCollectionTest();
         void printComputeUnitStatus() const;
+        bool allComputeUnitsDone() const;
+        bool allWarpsCompleted() const;
 
 
 };
