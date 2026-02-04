@@ -54,6 +54,15 @@ enum WarpState {
     STALLED
 };
 
+enum PipelineStage {
+    NOT_STARTED,
+    STAGE_0,
+    STAGE_1,
+    STAGE_2,
+    STAGE_3,
+    DONE
+};
+
 // Type alias for a group of threads in a warp
 using ThreadGroup = std::array<Thread, WARP_THREAD_COUNT>;
 
@@ -65,10 +74,11 @@ class Warp {
     Instruction currentInstruction;
     std::vector<reconvergencePoint> reconvergenceStack;
     WarpState state;
+    PipelineStage pipelineStage;
 
     public:
     Warp();
-    Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState = WarpState::READY);
+    Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState = WarpState::READY, PipelineStage pipelineStage = PipelineStage::NOT_STARTED);
 
      // Getter and Setter methods
     int getId() const;
@@ -76,7 +86,10 @@ class Warp {
     void setPc(int pc_);
     void setCurrentInstruction(const Instruction& instr);
     Instruction getCurrentInstruction() const;
+    PipelineStage getPipelineStage() const { return pipelineStage; }
+    void setPipelineStage(PipelineStage stage) { pipelineStage = stage; }
 
+    std :: string getPipelineStageString() const;
     const ActiveMask& getActiveMask() const;
 
 };
