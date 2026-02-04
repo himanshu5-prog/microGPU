@@ -15,33 +15,30 @@ enum SMState {
     ERROR
 };
 
-enum PipelineStage {
-    NOT_STARTED,
-    STAGE_0,
-    STAGE_1,
-    STAGE_2,
-    STAGE_3,
-    DONE
-};
+
 class ComputeUnit {
     std::vector<Warp> warps;
     int smId;
     int nextWarpId;
     int currentWarpId;
+    int currentCycle;
     SMState state;
 
     public:
-        ComputeUnit() : nextWarpId(0), currentWarpId(-1), state(IDLE) {}
+        ComputeUnit() : nextWarpId(0), currentWarpId(-1), currentCycle(0), state(SMState::IDLE) {}
         
         void setState(SMState newState);
         void setCurrentWarpId(int warpId);
         void setWarp(const Warp &warp);
         void setSmId(int id) { smId = id; }
+        void incrementCycle() { currentCycle++; }
+        void execute(); 
         // Getter methods
         int getCurrentWarpId();
         SMState getState() const;
         int getNextWarpId();
         int getWarpCollectionSize() const;
+        int getCurrentCycle() const { return currentCycle; }
         int getSmId() const { return smId; }
 
         // Print method for debugging
