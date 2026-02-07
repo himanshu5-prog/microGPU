@@ -88,7 +88,7 @@ class Warp {
     Instruction getCurrentInstruction() const;
     PipelineStage getPipelineStage() const { return pipelineStage; }
     void setPipelineStage(PipelineStage stage) { pipelineStage = stage; }
-
+    void setActiveMask(const ActiveMask& mask) { activeMask = mask; }
     std :: string getPipelineStageString() const;
     const ActiveMask& getActiveMask() const;
 
