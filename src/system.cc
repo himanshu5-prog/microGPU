@@ -1,12 +1,36 @@
 #include "microGPU/ugpu.hh"
-
+#define SIMULATION_CYCLES 100
+//TODO:
+/*
+Add simple test in which warps are sceduled to 2 compute units and see if interleaving is happening correctly.
+*/
 int main(){
     MicroGPU ugpu;
+
+    // Initialize microGPU and compute units
     ugpu.init();
+
+    // Create some test warps and add them to the global collection
     ugpu.createGlobalWarpCollectionTest();
+
+    // Perform warp scheduling to assign warps to compute units
     std :: cout << "(system) Now performing warp scheduling..." << std :: endl;
-    ugpu.performWarpScheduling();
-    ugpu.printComputeUnitStatus();
+    ugpu.performWarpSchedulingSimple();
+
+    // Simulate execution for aSIMULATION_CYCLES cycles
+    for (int cycle = 0; cycle < SIMULATION_CYCLES; ++cycle) {
+        std::cout << "\n--- Simulation Cycle: " << cycle << " ---\n";
+        // Execute warps in compute units for one cycle
+        ugpu.executeComputeUnits();
+        
+        // Check if all warps have completed execution
+        if (ugpu.allWarpsCompleted()) {
+            std::cout << "(system) All warps have completed execution. Ending simulation." << std::endl;
+            break;
+        }
+    }
+    // Execution completed, print final status of compute units
+    //ugpu.printComputeUnitStatus();
     return 0;    
 }
 
