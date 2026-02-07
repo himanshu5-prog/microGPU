@@ -28,12 +28,14 @@ class MicroGPU {
         int getCurrentCycle() const { return currentCycle; }
         void incrementCycle() { currentCycle++; }
         void performWarpScheduling();
+        void performWarpSchedulingSimple();
 
         // test method
         void createGlobalWarpCollectionTest();
         void printComputeUnitStatus() const;
         bool allComputeUnitsDone() const;
         bool allWarpsCompleted() const;
+        void executeComputeUnits(); // Method to execute warps in compute units for one cycle
 
 
 };

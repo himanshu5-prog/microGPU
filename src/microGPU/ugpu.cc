@@ -26,7 +26,7 @@ int MicroGPU::getGlobalWarpCollectionSize() const {
 
 void MicroGPU::createGlobalWarpCollectionTest() {
     // Create some test warps and add them to the global collection
-    for (int i = 0; i < 49; ++i) {
+    for (int i = 0; i < 5; ++i) {
         ThreadGroup threadGroup;
         for (int t = 0; t < WARP_THREAD_COUNT; ++t) {
             threadGroup[t] = Thread(i * WARP_THREAD_COUNT + t, ACTIVE);
@@ -89,4 +89,22 @@ bool MicroGPU::allWarpsCompleted() const {
         return true;
     }
     return false;
+}
+
+void MicroGPU::performWarpSchedulingSimple() {
+    // Simple scheduling: Assign all warps to the first two compute unit (for testing)
+    int smId = 0; // Assign to first SM for simplicity
+    for (const auto &warp : globalWarpCollection) {
+        assignWarpToSM(smId, warp);
+        smId = (smId + 1) % 2; // Move to next SM in round-robin fashion
+    }
+    // Clear global collection after assignment
+    globalWarpCollection.clear();
+    std::cout << "(microGPU) Simple warp scheduling completed." << std::endl;
+}
+
+void MicroGPU::executeComputeUnits() {
+    for (auto &cu : computeUnit) {
+        cu.execute();
+    }
 }
