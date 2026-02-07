@@ -25,7 +25,7 @@ class ComputeUnit {
     SMState state;
 
     public:
-        ComputeUnit() : nextWarpId(0), currentWarpId(-1), currentCycle(0), state(SMState::IDLE) {}
+        ComputeUnit() : nextWarpId(0), currentWarpId(0), currentCycle(0), state(SMState::IDLE) {}
         
         void setState(SMState newState);
         void setCurrentWarpId(int warpId);
