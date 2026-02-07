@@ -26,12 +26,22 @@ int MicroGPU::getGlobalWarpCollectionSize() const {
 
 void MicroGPU::createGlobalWarpCollectionTest() {
     // Create some test warps and add them to the global collection
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 49; ++i) {
         ThreadGroup threadGroup;
         for (int t = 0; t < WARP_THREAD_COUNT; ++t) {
             threadGroup[t] = Thread(i * WARP_THREAD_COUNT + t, ACTIVE);
         }
         Warp warp(i, threadGroup);
+
+        // Set up a simple instruction for the warp ( ADD R0, R1, R2)
+        warp.setCurrentInstruction(Instruction(ADD, 0, 1, 2)); // R0 = R1 + R2
+        // Initialize warp state
+        warp.setPipelineStage(PipelineStage::NOT_STARTED);
+        // Set PC and active mask for the warp
+        warp.setPc(0);
+        warp.setActiveMask(std::bitset<WARP_THREAD_COUNT>().set()); // All threads active
+
+        // Add the warp to the global collection
         addWarpToGlobalCollection(warp);
     }
     std::cout << "(microGPU) Total warps in global collection: " << getGlobalWarpCollectionSize() << std::endl;
