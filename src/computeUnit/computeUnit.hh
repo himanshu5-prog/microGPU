@@ -6,6 +6,7 @@
 #include<vector>
 #include<array>
 #include<bitset>
+#include<cassert>
 
 #include "../warp/warp.hh"
 
@@ -20,7 +21,7 @@ class ComputeUnit {
     std::vector<Warp> warps;
     int smId;
     int nextWarpId;
-    int currentWarpId;
+    size_t currentWarpId;
     int currentCycle;
     SMState state;
 
