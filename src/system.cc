@@ -1,9 +1,6 @@
 #include "microGPU/ugpu.hh"
 #define SIMULATION_CYCLES 100
-//TODO:
-/*
-Add simple test in which warps are sceduled to 2 compute units and see if interleaving is happening correctly.
-*/
+
 int main(){
     MicroGPU ugpu;
 
@@ -25,7 +22,7 @@ int main(){
         
         // Check if all warps have completed execution
         if (ugpu.allWarpsCompleted()) {
-            std::cout << "(system) All warps have completed execution. Ending simulation." << std::endl;
+            std::cout << "(system) All warps have completed execution. Ending simulation at cycle:  " << cycle << std::endl;
             break;
         }
     }
