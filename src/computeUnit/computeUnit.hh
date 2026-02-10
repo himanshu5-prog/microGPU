@@ -44,6 +44,7 @@ class ComputeUnit {
 
         // Print method for debugging
         void printId() const { std::cout << "(ComputeUnit) ComputeUnit ID: " << smId << std::endl; }
+        void calculateNextWarpId();
         
 };
 

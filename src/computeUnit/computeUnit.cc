@@ -51,16 +51,20 @@ void ComputeUnit::execute(){
     std::cout << "(ComputeUnit: " << smId << ") Completed execution for warp ID: " << warps[currentWarpId].getId() 
               << " at pipeline stage: " << warps[currentWarpId].getPipelineStageString() << std::endl;
     
-    currentWarpId += 1; // Move to the next warp for the next cycle
-
     // Iterate through all warps and remove the warps that are done
     warps.erase(std::remove_if(warps.begin(), warps.end(), [](const Warp& warp) {
         return warp.getPipelineStage() == PipelineStage::DONE;
     }), warps.end());
 
+    calculateNextWarpId(); // Move to the next warp for the next cycle
+    incrementCycle(); // Increment cycle count for the compute unit
+
+} 
+
+void ComputeUnit::calculateNextWarpId() {
+    currentWarpId += 1;
+
     if (currentWarpId >= warps.size()) {
         currentWarpId = 0; // Loop back to the first warp
     }
-    currentCycle += 1; // Increment cycle count for the compute unit
-
-}   
+}
