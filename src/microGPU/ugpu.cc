@@ -62,7 +62,7 @@ void MicroGPU::performWarpScheduling() {
 
 void MicroGPU::assignWarpToSM(int smId, const Warp &warp) {
     computeUnit[smId].setWarp(warp);
-    std::cout << "(microGPU) Assigned Warp ID " << warp.getId() << " to SM ID " << smId << std::endl;
+    std::cout << "(microGPU) Assigned Warp ID " << warp.getId() << " to ComputeUnit ID " << smId << std::endl;
 }
 
 void MicroGPU::printComputeUnitStatus() const {
@@ -93,10 +93,10 @@ bool MicroGPU::allWarpsCompleted() const {
 
 void MicroGPU::performWarpSchedulingSimple() {
     // Simple scheduling: Assign all warps to the first two compute unit (for testing)
-    int smId = 0; // Assign to first SM for simplicity
+    int smId = 0; // Assign to first ComputeUnit for simplicity
     for (const auto &warp : globalWarpCollection) {
         assignWarpToSM(smId, warp);
-        smId = (smId + 1) % 2; // Move to next SM in round-robin fashion
+        smId = (smId + 1) % 2; // Move to next ComputeUnit in round-robin fashion
     }
     // Clear global collection after assignment
     globalWarpCollection.clear();
