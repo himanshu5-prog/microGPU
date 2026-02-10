@@ -91,6 +91,7 @@ class Warp {
     void setActiveMask(const ActiveMask& mask) { activeMask = mask; }
     std :: string getPipelineStageString() const;
     const ActiveMask& getActiveMask() const;
+    WarpState getState() const { return state; }
 
 };
 
