@@ -18,3 +18,17 @@ The test is able to create warp and assign to Compute Units. Compute unit is abl
 <p align="center">
   <img src="doc/image/thread_warp_compute_unit_gpu.png" width="800">
 </p>
+
+Compiling the code
+
+1. Compile in debug mode
+
+  make
+
+2. Compile in release mode
+
+  make BUILD=release
+
+3. Sanitizer mode on
+
+  make SAN=1
