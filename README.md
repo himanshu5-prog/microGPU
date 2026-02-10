@@ -5,9 +5,6 @@
 
  Currently, microGPU is able to accept warps in global collection and then schedule to computeUnits. 
 
- TODO:
- Create functionality in compute unit to process the warps and mark it complete and remove it from its own warp collection.
-
  I will be adding more functionality and update this README.
 
 Current status (02/08):
