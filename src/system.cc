@@ -7,6 +7,9 @@ int main(){
     // Initialize microGPU and compute units
     ugpu.init();
 
+    // Set max cycles for the simulation. 
+    //ugpu.setMaxCycles(SIMULATION_CYCLES);
+
     // Create some test warps and add them to the global collection
     ugpu.createGlobalWarpCollectionTest();
 
@@ -14,20 +17,12 @@ int main(){
     std :: cout << "(system) Now performing warp scheduling..." << std :: endl;
     ugpu.performWarpSchedulingSimple();
 
-    // Simulate execution for aSIMULATION_CYCLES cycles
-    for (int cycle = 0; cycle < SIMULATION_CYCLES; ++cycle) {
-        std::cout << "\n--- Simulation Cycle: " << cycle << " ---\n";
-        // Execute warps in compute units for one cycle
-        ugpu.executeComputeUnits();
-        
-        // Check if all warps have completed execution
-        if (ugpu.allWarpsCompleted()) {
-            std::cout << "(system) All warps have completed execution. Ending simulation at cycle:  " << cycle << std::endl;
-            break;
-        }
-    }
+    // Execute the GPU until all warps are completed or max cycles reached
+    ugpu.executeGPU();
+
     // Execution completed, print final status of compute units
     //ugpu.printComputeUnitStatus();
+
     return 0;    
 }
 

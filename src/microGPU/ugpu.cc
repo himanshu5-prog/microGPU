@@ -12,6 +12,7 @@ void MicroGPU::init() {
         computeUnit[i].setState(IDLE);
         computeUnit[i].printId();
     }
+    maxCycles = 100; // Default max cycles for simulation
     std::cout << "(microGPU) MicroGPU SMs initialized." << std::endl;
 }
 
@@ -107,4 +108,22 @@ void MicroGPU::executeComputeUnits() {
     for (auto &cu : computeUnit) {
         cu.execute();
     }
+}
+
+void MicroGPU::executeGPU(){
+    int cycleCount = 0;
+    for (int cycle = 0; cycle < maxCycles; ++cycle) {
+        std::cout << "\n--- Simulation Cycle: " << cycle << " ---\n";
+        // Execute warps in compute units for one cycle
+        executeComputeUnits();
+        cycleCount = cycle; 
+
+        // Check if all warps have completed execution
+        if (allWarpsCompleted()) {
+            std::cout << "(system) All warps have completed execution. Ending simulation at cycle:  " << cycle << std::endl;
+            break;
+        }
+    }
+
+    std :: cout << "(microGPU) GPU executed for cycles: " << cycleCount + 1 << std::endl;
 }

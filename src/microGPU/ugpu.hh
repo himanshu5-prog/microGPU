@@ -18,6 +18,7 @@ class MicroGPU {
    // Collection of Streaming Multiprocessors
    std::array<ComputeUnit, CU_COUNT> computeUnit;
    int currentCycle;
+   int maxCycles;
 
    public:
         MicroGPU();
@@ -29,6 +30,7 @@ class MicroGPU {
         void incrementCycle() { currentCycle++; }
         void performWarpScheduling();
         void performWarpSchedulingSimple();
+        void setMaxCycles(int cycles) { maxCycles = cycles; }
 
         // test method
         void createGlobalWarpCollectionTest();
@@ -36,6 +38,7 @@ class MicroGPU {
         bool allComputeUnitsDone() const;
         bool allWarpsCompleted() const;
         void executeComputeUnits(); // Method to execute warps in compute units for one cycle
+        void executeGPU(); // Method to execute the entire GPU until all warps are completed
 
 
 };
