@@ -10,11 +10,6 @@
 Current status (02/08):
 The test is able to create warp and assign to Compute Units. Compute unit is able to execute warp in round robin manner. It has been verified from log file by looking at the pipeline stage with time.
 
- ## GPU Execution Hierarchy
-
-<p align="center">
-  <img src="doc/image/thread_warp_compute_unit_gpu.png" width="800">
-</p>
 
 Compiling the code
 
