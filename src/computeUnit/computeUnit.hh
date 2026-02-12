@@ -23,9 +23,6 @@ class ComputeUnit {
     // Each compute unit has its own ID
     int smId;
 
-    // Warp ID which will be executed in next cycle
-    int nextWarpId;
-
     // Current warp ID being executed
     size_t currentWarpId;
 
@@ -36,7 +33,7 @@ class ComputeUnit {
     SMState state;
 
     public:
-        ComputeUnit() : nextWarpId(0), currentWarpId(0), currentCycle(0), state(SMState::IDLE) {}
+        ComputeUnit() : currentWarpId(0), currentCycle(0), state(SMState::IDLE) {}
        
         // Setter methods
         void setState(SMState newState);
@@ -53,7 +50,6 @@ class ComputeUnit {
         // Getter methods
         int getCurrentWarpId();
         SMState getState() const;
-        int getNextWarpId();
         int getWarpCollectionSize() const;
         int getCurrentCycle() const { return currentCycle; }
         int getSmId() const { return smId; }

@@ -16,9 +16,6 @@ int ComputeUnit::getCurrentWarpId() {
 SMState ComputeUnit::getState() const {
     return state;
 }
-int ComputeUnit::getNextWarpId() {
-    return nextWarpId++;
-}
 
 int ComputeUnit::getWarpCollectionSize() const {
     return warps.size();
