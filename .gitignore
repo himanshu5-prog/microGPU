@@ -1,0 +1,6 @@
+*log*
+tinyGPU.dSYM
+microGPU.dSYM
+build/
+docs/html/
+docs/latex/
