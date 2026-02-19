@@ -1,0 +1,17 @@
+<map id="MicroGPU::createGlobalWarpCollectionTest" name="MicroGPU::createGlobalWarpCollectionTest">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,137,216,177"/>
+<area shape="rect" id="Node000002" href="$classMicroGPU.html#a7fd2fb1a3baf2082701fb00e51248874" title=" " alt="" coords="302,5,509,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,135,192,94,263,55,288,46,289,51,265,60,194,99,138,139"/>
+<area shape="rect" id="Node000004" href="$classMicroGPU.html#ac9d20a40f7c96a894415254bd51ee224" title=" " alt="" coords="264,70,547,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="165,135,263,104,304,95,305,100,265,109,166,140"/>
+<area shape="rect" id="Node000005" href="$classWarp.html#a54d739ae67d40dcc04073e3e305d5747" title=" " alt="" coords="326,119,485,145"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="216,146,312,137,313,143,216,151"/>
+<area shape="rect" id="Node000006" href="$classWarp.html#ab2fb4ab1c4ea487c7b769bd274f612e9" title=" " alt="" coords="305,169,505,194"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="216,163,292,169,291,175,216,169"/>
+<area shape="rect" id="Node000007" href="$classWarp.html#a120787a3712d72acbd17c103d7bcb6d2" title=" " alt="" coords="356,218,455,243"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="170,175,265,203,343,219,342,224,263,208,169,180"/>
+<area shape="rect" id="Node000008" href="$classWarp.html#a87e1074ee05c3d48b955edf513df7c1b" title=" " alt="" coords="319,267,491,293"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="138,175,194,215,229,235,265,252,307,265,305,270,263,257,226,240,191,220,135,180"/>
+<area shape="rect" id="Node000003" href="$classWarp.html#a08af950f98548cb2858038c8f1defd58" title=" " alt="" coords="595,13,691,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="509,23,581,23,581,28,509,28"/>
+</map>

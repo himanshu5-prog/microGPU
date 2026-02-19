@@ -1,0 +1,7 @@
+<map id="ComputeUnit::execute" name="ComputeUnit::execute">
+<area shape="rect" id="Node000001" title="Execute the current warp and advance its pipeline stage. Called once per cycle." alt="" coords="5,42,172,67"/>
+<area shape="rect" id="Node000002" href="$classComputeUnit.html#a0ab6f9d7625d4fe6d3c9497cb171d1fa" title="Method to calculate the next warp ID to execute based on round&#45;robin scheduling." alt="" coords="226,5,433,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,42,212,37,212,42,173,47"/>
+<area shape="rect" id="Node000003" href="$classComputeUnit.html#a3852f1d100b812d82d684f3ea15985ed" title=" " alt="" coords="220,70,439,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,62,207,66,206,71,172,67"/>
+</map>

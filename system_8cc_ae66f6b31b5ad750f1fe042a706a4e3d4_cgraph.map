@@ -1,0 +1,34 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,335,60,360"/>
+<area shape="rect" id="Node000002" href="$classMicroGPU.html#a50c566aa9a3a4fbb41853fddf21871c8" title=" " alt="" coords="128,146,339,186"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="46,332,198,194,202,197,50,336"/>
+<area shape="rect" id="Node000010" href="$classMicroGPU.html#a3ecf80307b76a43b4ca8ca6b2e830d77" title="Execute the entire GPU until all warps are completed." alt="" coords="147,412,320,437"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="50,358,76,379,109,398,134,407,133,412,107,403,73,384,46,363"/>
+<area shape="rect" id="Node000014" href="$classMicroGPU.html#a201dc8fc1a64813e67c936e0da6e1290" title=" " alt="" coords="176,363,291,388"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="61,348,163,363,162,368,60,354"/>
+<area shape="rect" id="Node000015" href="$classMicroGPU.html#a495eb11350a60d3cf23e8f9b1db72fd0" title=" " alt="" coords="108,298,359,338"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="60,341,94,336,95,341,61,346"/>
+<area shape="rect" id="Node000003" href="$classMicroGPU.html#a7fd2fb1a3baf2082701fb00e51248874" title=" " alt="" coords="445,253,651,293"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,184,338,211,408,237,440,247,439,252,406,242,336,216,275,189"/>
+<area shape="rect" id="Node000005" href="$classMicroGPU.html#ac9d20a40f7c96a894415254bd51ee224" title=" " alt="" coords="407,153,689,179"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="339,163,393,163,393,169,339,169"/>
+<area shape="rect" id="Node000006" href="$classWarp.html#a54d739ae67d40dcc04073e3e305d5747" title=" " alt="" coords="469,203,627,228"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="339,180,455,198,455,203,339,185"/>
+<area shape="rect" id="Node000007" href="$classWarp.html#ab2fb4ab1c4ea487c7b769bd274f612e9" title=" " alt="" coords="448,5,648,31"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="254,143,319,91,361,63,406,40,434,30,436,35,408,44,363,67,322,95,258,148"/>
+<area shape="rect" id="Node000008" href="$classWarp.html#a120787a3712d72acbd17c103d7bcb6d2" title=" " alt="" coords="499,55,597,80"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="273,143,334,115,406,89,484,72,485,77,407,94,336,120,275,148"/>
+<area shape="rect" id="Node000009" href="$classWarp.html#a87e1074ee05c3d48b955edf513df7c1b" title=" " alt="" coords="462,104,634,129"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="339,147,452,129,453,134,339,152"/>
+<area shape="rect" id="Node000004" href="$classWarp.html#a08af950f98548cb2858038c8f1defd58" title=" " alt="" coords="808,289,904,315"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="652,280,794,294,794,299,651,285"/>
+<area shape="rect" id="Node000011" href="$classMicroGPU.html#a82f579c44ccd304d6280ae8a21426e6b" title=" " alt="" coords="437,456,659,481"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="321,434,444,451,443,457,320,439"/>
+<area shape="rect" id="Node000013" href="$classMicroGPU.html#abebfb1c35f8efebcfd60a99be5f99265" title="Execute all compute units for one cycle." alt="" coords="446,391,650,431"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="320,418,432,414,432,419,320,424"/>
+<area shape="rect" id="Node000012" href="$classMicroGPU.html#aea21b001322de68cd49b82d6837b9c12" title=" " alt="" coords="737,456,975,481"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="659,466,724,466,724,471,659,471"/>
+<area shape="rect" id="Node000016" href="$classMicroGPU.html#a7da436b9b118c716e5310b10de8dc351" title=" " alt="" coords="447,317,649,343"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="359,320,433,323,433,328,359,325"/>
+<area shape="poly" id="edge16_Node000016_Node000004" title=" " alt="" coords="649,318,794,305,795,310,650,323"/>
+</map>
