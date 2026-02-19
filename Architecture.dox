@@ -1,0 +1,15 @@
+/**
+ * @mainpage Architecture Overview
+ * * @section intro_sec Introduction
+ * microGPU is a functional model designed to simulate the execution flow of a modern GPU.
+ * The hierarchy follows a standard SIMT (Single Instruction, Multiple Threads) structure.
+ * * @section hierarchy_sec Hardware Hierarchy
+ * - **Compute Unit (CU):** The primary processing block. It contains the logic to execute warps in a round-robin fashion.
+ * - **Warp:** A group of threads that execute the same instruction in lock-step.
+ * - **Thread:** The smallest unit of execution, containing its own register state and program counter.
+ * * @section flow_sec Execution Flow
+ * 1. Warps are created in a global collection.
+ * 2. The scheduler assigns Warps to an available @ref ComputeUnit.
+ * 3. The @ref ComputeUnit cycles through its assigned Warps, advancing their pipeline stages.
+ * * 
+ */
