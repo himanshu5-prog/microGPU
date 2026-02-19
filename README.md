@@ -1,9 +1,10 @@
  # microGPU
 
 [![Documentation](https://img.shields.io/badge/docs-doxygen-blue)](https://himanshu5-prog.github.io/microGPU/)
-[![Build and Deploy Doxygen Docs](https://github.com/himanshu5-prog/microGPU/actions/workflows/doxygen.yml/badge.svg)](https://github.com/himanshu5-prog/microGPU/actions/workflows/doxygen.yml)
-![GitHub top language](https://img.shields.io/github/languages/top/himanshu5-prog/microGPU)
-
+ [![Build and Deploy Doxygen Docs](https://github.com/himanshu5-prog/microGPU/actions/workflows/doxygen.yml/badge.svg)](https://github.com/himanshu5-prog/microGPU/actions/workflows/doxygen.yml)
+ ![GitHub top language](https://img.shields.io/github/languages/top/himanshu5-prog/microGPU)
+ [![GitHub issues](https://img.shields.io/github/issues/himanshu5-prog/microGPU)](https://github.com/himanshu5-prog/microGPU/issues)
+ [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
  I am creating a simple functional model of GPU to understand its architecture. I have started with class definition of thread and warp and later added compute units.
 
