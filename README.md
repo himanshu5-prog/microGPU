@@ -15,12 +15,12 @@ Compiling the code
 
 1. Compile in debug mode
 
-  make
+    make
 
 2. Compile in release mode
 
-  make BUILD=release
+    make BUILD=release
 
 3. Sanitizer mode on
 
-  make SAN=1
+    make SAN=1
