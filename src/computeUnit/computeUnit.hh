@@ -16,14 +16,9 @@ enum SMState {
     ERROR
 };
 
-/**
- * @defgroup ComputeUnit
- * @brief Represents a GPU compute unit 
- * 
- */
 /** @class ComputeUnit
  *  @brief Represents a GPU compute unit
- *  @ingroup ComputeUnit
+ *  @ingroup Architecture
  * The ComputeUnit class encapsulates the state and behavior of a GPU compute unit.
  * It executes Warp objects, which are groups of threads that execute instructions in lockstep.
  * The ComputeUnit manages the scheduling of warps and executes them in simple round-robin fashion.

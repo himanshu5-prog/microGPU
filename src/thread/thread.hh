@@ -18,14 +18,14 @@ enum ThreadState {
 };
 
 /**
- * @defgroup Thread
+ * @defgroup Computation
  * @brief Represents a GPU thread
  * 
  */
 /**
  * @class Thread 
  * @brief Represents a GPU thread
- * @defgroup Thread 
+ * @ingroup Computation
  * The Thread class encapsulates the state and behavior of a GPU thread, including its ID, execution state, and register file. 
  * Each thread can be active or inactive, and it has a set of registers that can be read from and written to during instruction execution.
  * 
