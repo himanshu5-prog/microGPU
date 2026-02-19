@@ -13,7 +13,7 @@
 #define CU_COUNT 16
 /**
  * @defgroup Architecture
- * @brief Represents a microGPU
+ * @brief Represents architectural components of a GPU, including Compute Units and the MicroGPU itself.
  */
 /**
  * @brief Represents a microGPU
