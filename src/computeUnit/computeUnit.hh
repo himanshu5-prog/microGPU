@@ -15,7 +15,23 @@ enum SMState {
     BUSY,
     ERROR
 };
-
+/** @class ComputeUnit
+ *  @brief Represents a GPU compute unit
+ * 
+ * The ComputeUnit class encapsulates the state and behavior of a GPU compute unit.
+ * It executes Warp objects, which are groups of threads that execute instructions in lockstep.
+ * The ComputeUnit manages the scheduling of warps and executes them in simple round-robin fashion.
+ * 
+ * Each warp can be in one of following pipeline stages: 
+ * 
+ * -> NOT_STARTED, 
+ * -> STAGE_0, 
+ * -> STAGE_1, 
+ * -> STAGE_2, 
+ * -> STAGE_3, 
+ * -> DONE.
+ * 
+ */
 
 class ComputeUnit {
     std::vector<Warp> warps;
@@ -44,7 +60,7 @@ class ComputeUnit {
         // Increment cycle count for the compute unit
         void incrementCycle() { currentCycle++; }
 
-        // Execute the current warp and advance its pipeline stage
+        /// Execute the current warp and advance its pipeline stage. Called once per cycle.
         void execute(); 
 
         // Getter methods
@@ -57,7 +73,7 @@ class ComputeUnit {
         // Print method for debugging
         void printId() const { std::cout << "(ComputeUnit) ComputeUnit ID: " << smId << std::endl; }
 
-        // Method to calculate the next warp ID to execute based on round-robin scheduling
+        /// Method to calculate the next warp ID to execute based on round-robin scheduling
         void calculateNextWarpId();
         
 };

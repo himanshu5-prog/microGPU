@@ -6,7 +6,8 @@
 #include <vector>
 #include <cassert>
 #include <array>
-// Define the number of registers available to each thread
+
+/// Define the number of registers available to each thread
 #define THREAD_REGISTER_COUNT 64
 
 using RegisterFile = std::array<int, THREAD_REGISTER_COUNT>;
@@ -16,7 +17,16 @@ enum ThreadState {
     INACTIVE // Thread is inactive and should not execute instructions
 };
 
+/**
+ * @class Thread 
+ * @brief Represents a GPU thread
+ * 
+ * The Thread class encapsulates the state and behavior of a GPU thread, including its ID, execution state, and register file. 
+ * Each thread can be active or inactive, and it has a set of registers that can be read from and written to during instruction execution.
+ * 
+ */
 class Thread {
+
     int id;
     ThreadState state;
     RegisterFile registers;

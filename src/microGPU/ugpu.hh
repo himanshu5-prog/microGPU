@@ -9,9 +9,16 @@
 #include "../warp/warp.hh"
 #include "../computeUnit/computeUnit.hh"
 
-// Number of Compute Units in microGPU
+/// Number of Compute Units in microGPU
 #define CU_COUNT 16
-
+/**
+ * @brief Represents a microGPU
+ * 
+ * The MicroGPU class encapsulates the state and behavior of a microGPU, which consists of multiple compute units (CUs) that execute warps of threads.
+ * In this project miroGPU has 16 compute units, each capable of executing one warp at a time. 
+ * MicroGPU schedules warps from its global warp collection to the compute units and then Compute Units execute the warps in a simple round-robin fashion.
+ * 
+ */
 class MicroGPU { 
    std::vector <Warp> globalWarpCollection;
 
@@ -37,7 +44,17 @@ class MicroGPU {
         void printComputeUnitStatus() const;
         bool allComputeUnitsDone() const;
         bool allWarpsCompleted() const;
+
+        /**
+         * @brief Execute all compute units for one cycle
+         * 
+         */
         void executeComputeUnits(); // Method to execute warps in compute units for one cycle
+
+        /**
+         * @brief Execute the entire GPU until all warps are completed
+         * 
+         */
         void executeGPU(); // Method to execute the entire GPU until all warps are completed
 
 

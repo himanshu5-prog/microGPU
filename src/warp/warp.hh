@@ -66,9 +66,17 @@ enum PipelineStage {
 // Type alias for a group of threads in a warp
 using ThreadGroup = std::array<Thread, WARP_THREAD_COUNT>;
 
+/**
+ * @class Warp
+ * @brief Represents a GPU warp
+ * 
+ * The Warp class encapsulates the state and behavior of a GPU warp, including its ID, program counter, threads, active mask, and current instruction.
+ * A warp is a group of threads that execute instructions in lockstep. 
+ * To be added: reconvergence stack to handle divergent control flow.
+ */
 class Warp {
     int id;
-    int pc;
+    int pc; // All threads in the warp share the same program counter
     ThreadGroup threads;
     ActiveMask activeMask;
     Instruction currentInstruction;
