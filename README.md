@@ -1,3 +1,7 @@
+ # microGPU
+
+[![Documentation](https://img.shields.io/badge/docs-doxygen-blue)](https://himanshu5-prog.github.io/microGPU/)
+
  MicroGPU
 
 
