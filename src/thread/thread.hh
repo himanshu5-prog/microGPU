@@ -19,7 +19,7 @@ enum ThreadState {
 
 /**
  * @defgroup Computation
- * @brief Represents computational components of a GPU, including Threads and Warps.
+ * @brief Represents computational components of a GPU, including Thread and Warp.
  */
 /**
  * @class Thread 
