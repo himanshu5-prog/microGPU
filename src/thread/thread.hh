@@ -18,6 +18,11 @@ enum ThreadState {
 };
 
 /**
+ * @defgroup Thread
+ * @brief Represents a GPU thread
+ * 
+ */
+/**
  * @class Thread 
  * @brief Represents a GPU thread
  * @defgroup Thread 
