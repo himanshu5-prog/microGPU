@@ -13,7 +13,7 @@
 #define CU_COUNT 16
 /**
  * @brief Represents a microGPU
- * 
+ * @defgroup MicroGPU 
  * The MicroGPU class encapsulates the state and behavior of a microGPU, which consists of multiple compute units (CUs) that execute warps of threads.
  * In this project miroGPU has 16 compute units, each capable of executing one warp at a time. 
  * MicroGPU schedules warps from its global warp collection to the compute units and then Compute Units execute the warps in a simple round-robin fashion.

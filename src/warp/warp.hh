@@ -15,7 +15,7 @@
 using ActiveMask = std::bitset<WARP_THREAD_COUNT>;
 
 
-// Instruction types enumeration
+/// Instruction types enumeration
 enum InstructionType {
     ADD,
     SUB,
@@ -24,7 +24,7 @@ enum InstructionType {
     BRANCH
 };
 
-//Instruction structure
+///Instruction structure
 struct Instruction {
     InstructionType type;
     int dest;
@@ -69,7 +69,7 @@ using ThreadGroup = std::array<Thread, WARP_THREAD_COUNT>;
 /**
  * @class Warp
  * @brief Represents a GPU warp
- * 
+ * @defgroup Warp
  * The Warp class encapsulates the state and behavior of a GPU warp, including its ID, program counter, threads, active mask, and current instruction.
  * A warp is a group of threads that execute instructions in lockstep. 
  * To be added: reconvergence stack to handle divergent control flow.
