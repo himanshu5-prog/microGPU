@@ -27,8 +27,8 @@ void ComputeUnit::execute(){
         currentWarpId = 0;
         return;
     }
-    std :: cout << "(ComputeUnit) : " << smId << " Cycle: " << currentCycle <<", id: " << warps[currentWarpId].getId() << "\n";
-    assert (currentWarpId >= 0 && currentWarpId < warps.size());
+    std::cout << "(ComputeUnit) : " << smId << " Cycle: " << currentCycle <<", id: " << warps[currentWarpId].getId() << "\n";
+    assert (currentWarpId < warps.size());
     std::cout << "(ComputeUnit: " << smId << ") Executing warp ID: " << warps[currentWarpId].getId() 
               << " at pipeline stage: " << warps[currentWarpId].getPipelineStageString() << std::endl;
 

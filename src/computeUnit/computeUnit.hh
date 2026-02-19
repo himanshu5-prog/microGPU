@@ -7,7 +7,7 @@
 #include<array>
 #include<bitset>
 #include<cassert>
-
+#include<algorithm>
 #include "../warp/warp.hh"
 
 enum SMState {
