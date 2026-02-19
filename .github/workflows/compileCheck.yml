@@ -1,0 +1,27 @@
+name: C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        build_type: [debug, release]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install compiler
+        run: sudo apt-get update && sudo apt-get install -y clang g++ make
+
+      - name: Build (${{ matrix.build_type }})
+        run: |
+          make clean
+          make BUILD=${{ matrix.build_type }}
