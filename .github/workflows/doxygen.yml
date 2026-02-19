@@ -26,13 +26,13 @@ jobs:
         run: doxygen Doxyfile
 
       - name: Fix Jekyll Issues
-        run: touch html/.nojekyll
+        run: touch docs/html/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Changed from ./docs/html to ./html
-          path: './html'
+          path: 'docs/html'
 
       - name: Deploy to GitHub Pages
         id: deployment
