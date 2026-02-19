@@ -3,7 +3,6 @@
 [![Documentation](https://img.shields.io/badge/docs-doxygen-blue)](https://himanshu5-prog.github.io/microGPU/)
 [![Build and Deploy Doxygen Docs](https://github.com/himanshu5-prog/microGPU/actions/workflows/doxygen.yml/badge.svg)](https://github.com/himanshu5-prog/microGPU/actions/workflows/doxygen.yml)
 ![GitHub top language](https://img.shields.io/github/languages/top/himanshu5-prog/microGPU)
- MicroGPU
 
 
  I am creating a simple functional model of GPU to understand its architecture. I have started with class definition of thread and warp and later added compute units.
