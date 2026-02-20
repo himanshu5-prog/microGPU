@@ -3,7 +3,7 @@
   
   @section intro_sec Introduction
   microGPU is a functional model designed to simulate the execution flow of a modern GPU.
-  The hierarchy follows a standard SIMT (Single Instruction, Multiple Threads) structure.
+  The hierarchy follows a standard SIMD (Single Instruction, Multiple Data) structure.
   
   @section hierarchy_sec Hardware Hierarchy
   - **ComputeUnit (CU):** The primary processing block. It contains the logic to execute warps in a round-robin fashion.
