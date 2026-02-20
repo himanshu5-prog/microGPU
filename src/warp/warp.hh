@@ -38,6 +38,11 @@ struct Instruction {
 };
 
 // Reconvergence point structure
+/**
+ * @brief Represents a reconvergence point in a warp
+ * It has PC value and active mask to indicate which threads are active at the reconvergence point.
+ * Might need to be extend in the future to add some metadata to handle more complex reconvergence scenarios.
+ */
 struct reconvergencePoint {
     int pc;
     ActiveMask mask;
