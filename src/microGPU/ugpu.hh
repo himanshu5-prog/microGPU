@@ -35,15 +35,33 @@ class MicroGPU {
         MicroGPU();
         void init();
         void assignWarpToSM(int smId, const Warp &warp);
+
+        /**
+         * @brief Add a warp to the global warp collection
+         * 
+         * @param warp The warp to be added to the global collection
+         *
+         */
         void addWarpToGlobalCollection(const Warp &warp);
         int getGlobalWarpCollectionSize() const;
         int getCurrentCycle() const { return currentCycle; }
         void incrementCycle() { currentCycle++; }
         void performWarpScheduling();
+
+        /**
+         * @brief Perform simple warp scheduling
+         * This function assigns alternating warps from the global collection to the first two compute units in a round-robin fashion.
+         * Just for testing purposes to verify that warps are being scheduled and executed correctly. In real life, all Compute Units would be utilized.
+         */
         void performWarpSchedulingSimple();
         void setMaxCycles(int cycles) { maxCycles = cycles; }
 
         // test method
+        /**
+         *  @brief Create a Global Warp Collection Test object
+         * This method creates a set of test warps with simple instructions and adds them to the global warp collection for testing purposes. Each warp is initialized with a simple ADD instruction and all threads in the warp are set to active.
+         * 
+         */
         void createGlobalWarpCollectionTest();
         void printComputeUnitStatus() const;
         bool allComputeUnitsDone() const;
