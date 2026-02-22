@@ -42,6 +42,7 @@ void ComputeUnit::execute(){
     } else if (warps[currentWarpId].getPipelineStage() == PipelineStage::STAGE_2) {
         warps[currentWarpId].setPipelineStage(PipelineStage::STAGE_3);
     } else if (warps[currentWarpId].getPipelineStage() == PipelineStage::STAGE_3) {
+        warps[currentWarpId].execute(); // Execute the instruction of the warp
         warps[currentWarpId].setPipelineStage(PipelineStage::DONE);
     } 
 
