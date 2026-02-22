@@ -78,7 +78,7 @@ class ComputeUnit {
         void calculateNextWarpId();
 
         /**
-         * @brief Detect if a warp is divergent based on its active mask and current instruction
+         * @brief Detect if a warp is divergent based on instruction type
          * @param warp The warp to check for divergence
          * @return true if the warp is divergent, false otherwise
          * Currenntly, this method returns true if the current instruction is a branch instruction.
