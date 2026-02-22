@@ -52,13 +52,20 @@ struct reconvergencePoint {
     reconvergencePoint() : pc(0), mask() {}
 };
 
-// Warp state enumeration
+/**
+ * @brief Warp states
+ * Not using this yet but can be useful in future iterations to manage the state of warps more effectively, especially when we implement more complex scheduling and execution logic.
+ */
 enum WarpState {
     READY,
     RUNNING,
     STALLED
 };
 
+/**
+ * @brief Pipeline stages for a warp
+ * 
+ */
 enum PipelineStage {
     NOT_STARTED,
     STAGE_0,
@@ -85,7 +92,13 @@ class Warp {
     ThreadGroup threads;
     ActiveMask activeMask;
     Instruction currentInstruction;
+
+    /**
+     * @brief Reconvergence stack for handling divergent control flow 
+     * 
+     */
     std::vector<reconvergencePoint> reconvergenceStack;
+
     WarpState state;
     PipelineStage pipelineStage;
     bool isBranchDivergent = false; // Flag to indicate if the warp is currently divergent due to a branch instruction

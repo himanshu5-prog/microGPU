@@ -74,7 +74,10 @@ class ComputeUnit {
         // Print method for debugging
         void printId() const { std::cout << "(ComputeUnit) ComputeUnit ID: " << smId << std::endl; }
 
-        /// Method to calculate the next warp ID to execute based on round-robin scheduling
+        /**
+         * @brief Calculate the next warp ID to execute based on round-robin scheduling
+         * 
+         */
         void calculateNextWarpId();
 
         /**
