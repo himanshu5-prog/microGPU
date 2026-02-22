@@ -106,6 +106,9 @@ class Warp {
     const ActiveMask& getActiveMask() const;
     WarpState getState() const { return state; }
 
+    // method to execute the instruction of the warp - to be called by ComputeUnit during execution
+    void execute();
+    std::string getInstructionTypeString(Instruction inst) const;
 };
 
 

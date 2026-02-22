@@ -46,3 +46,58 @@ std::string Warp::getPipelineStageString() const {
         default: return "UNKNOWN_STAGE";
     }
 }
+
+std::string Warp::getInstructionTypeString(Instruction inst) const {
+    switch (inst.type) {
+        case ADD: return "ADD";
+        case SUB: return "SUB";
+        case LOAD: return "LOAD";
+        case STORE: return "STORE";
+        default: return "UNKNOWN_INSTRUCTION";
+    }
+}
+
+void Warp::execute(){
+    Instruction instr = getCurrentInstruction();
+    // Execute the instruction
+    // Need to check active mask to determine which threads are active and should execute the instruction
+
+    if (activeMask.none()) {
+        std::cout << "(Warp " << id << ") No active threads to execute instruction." << std::endl;
+        return;
+    }
+
+    for (int t = 0; t < WARP_THREAD_COUNT; ++t) {
+        // Check if the thread is active based on the active mask
+        if (activeMask.test(t)) {
+            threads[t].setState(ACTIVE);
+            threads[t].setRegisterValue(instr.src1, 42); // Dummy execution: Set R0 to 42 for active threads
+            threads[t].setRegisterValue(instr.src2, 24); // Dummy execution: Set R1 to 24 for active threads
+            
+            switch(instr.type) {
+                case ADD:
+                    threads[t].setRegisterValue(instr.dest, threads[t].getRegisterValue(instr.src1) + threads[t].getRegisterValue(instr.src2));
+                    break;
+                case SUB:
+                    threads[t].setRegisterValue(instr.dest, threads[t].getRegisterValue(instr.src1) - threads[t].getRegisterValue(instr.src2));
+                    break;
+                case LOAD:
+                    // Simulate a load by setting the destination register to a dummy value
+                    threads[t].setRegisterValue(instr.dest, 123); // Dummy load value
+                    break;
+                case STORE:
+                    // Simulate a store by printing the value being stored
+                    std::cout << "(Warp " << id << ") Thread " << threads[t].getId() << " storing value: " << threads[t].getRegisterValue(instr.src1) <<
+                                " to memory address: " << threads[t].getRegisterValue(instr.src2) << std::endl;
+                    break;
+                default:
+                    std::cout << "(Warp " << id << ") Thread " << threads[t].getId() << " encountered unknown instruction type." << std::endl;
+                // Branches will be handled in future iterations when we implement control flow and reconvergence
+            }
+            std::cout << "(Warp " << id << ") Thread " << threads[t].getId() << " is active and executed instruction: " << getInstructionTypeString(instr) << std::endl;
+        } else {
+
+            std::cout << "(Warp " << id << ") Thread " << threads[t].getId() << " is inactive and will not execute instruction." << std::endl;
+        }
+    }
+}
