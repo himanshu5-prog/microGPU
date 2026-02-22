@@ -45,6 +45,11 @@ void MicroGPU::createGlobalWarpCollectionTest() {
         // Add the warp to the global collection
         addWarpToGlobalCollection(warp);
     }
+    // Adding one more warp with branch instruction to test divergence handling
+    Warp divergentWarp(5, ThreadGroup(), READY, NOT_STARTED, true);
+    divergentWarp.setCurrentInstruction(Instruction(InstructionType::BRANCH, 0, 1, 2));
+    addWarpToGlobalCollection(divergentWarp);
+    std::cout << "(microGPU) Branch warp with ID " << divergentWarp.getId() << " added to global collection." << std::endl;
     std::cout << "(microGPU) Total warps in global collection: " << getGlobalWarpCollectionSize() << std::endl;
 }
 
