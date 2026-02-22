@@ -60,6 +60,7 @@ class MicroGPU {
         /**
          *  @brief Create a Global Warp Collection Test object
          * This method creates a set of test warps with simple instructions and adds them to the global warp collection for testing purposes. Each warp is initialized with a simple ADD instruction and all threads in the warp are set to active.
+         * Additionally, one warp with a branch instruction is added to test divergence handling in the compute units.
          * 
          */
         void createGlobalWarpCollectionTest();

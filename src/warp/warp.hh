@@ -113,9 +113,28 @@ class Warp {
     std::string getInstructionTypeString(Instruction inst) const;
 
     // Methods to manage reconvergence points
+
+    /**
+     * @brief Add a reconvergence point to the stack
+     * @param pc The program counter value at the reconvergence point
+     * @param mask The active mask at the reconvergence point
+     * This method is called when a divergent branch is encountered to save the reconvergence point information on the stack.
+     */
     void addReconvergencePoint(int pc, const ActiveMask& mask);
+
+    /**
+     * @brief Peek the top reconvergence point on the stack
+     * This method is used for debugging purposes to check the current reconvergence points for a warp.
+     */
     void peekReconvergencePoint() const;
+
+    /**
+     * @brief Pop the top reconvergence point from the stack
+     * This method is called when a reconvergence point is reached during execution to restore the active mask and program counter for the warp.
+     */
     void popReconvergencePoint();
+
+    // Method to get the size of the reconvergence stack, useful for checking if all reconvergence points have been processed
     size_t getReconvergenceStackSize() const;
 };
 
