@@ -34,6 +34,14 @@ void ComputeUnit::execute(){
 
     // Simulate execution by advancing the pipeline stage of the current warp
     if (warps[currentWarpId].getPipelineStage() == PipelineStage::NOT_STARTED) {
+        if (detectDivergence(warps[currentWarpId])) {
+            std::cout << "(ComputeUnit: " << smId << ") Divergence detected for warp ID: " << warps[currentWarpId].getId() << std::endl;
+            std::bitset<WARP_THREAD_COUNT> mask = 0x00FF;
+            warps[currentWarpId].addReconvergencePoint(0, mask);
+            
+            mask = 0xFF00;
+            warps[currentWarpId].addReconvergencePoint(10, mask);
+        }
         warps[currentWarpId].setPipelineStage(PipelineStage::STAGE_0);
     } else if (warps[currentWarpId].getPipelineStage() == PipelineStage::STAGE_0) {
         warps[currentWarpId].setPipelineStage(PipelineStage::STAGE_1);
@@ -42,8 +50,22 @@ void ComputeUnit::execute(){
     } else if (warps[currentWarpId].getPipelineStage() == PipelineStage::STAGE_2) {
         warps[currentWarpId].setPipelineStage(PipelineStage::STAGE_3);
     } else if (warps[currentWarpId].getPipelineStage() == PipelineStage::STAGE_3) {
-        warps[currentWarpId].execute(); // Execute the instruction of the warp
-        warps[currentWarpId].setPipelineStage(PipelineStage::DONE);
+
+        if (warps[currentWarpId].isDivergent()) {
+            warps[currentWarpId].peekReconvergencePoint();
+            warps[currentWarpId].setPipelineStage(PipelineStage::STAGE_0);
+            std::cout << "(ComputeUnit: " << smId << ") Popping reconvergence point for warp ID: " << warps[currentWarpId].getId() << std::endl;
+            warps[currentWarpId].popReconvergencePoint();
+
+            if (warps[currentWarpId].getReconvergenceStackSize() == 0) {
+                std::cout << "(ComputeUnit: " << smId << ") All reconvergence points completed for warp ID: " << warps[currentWarpId].getId() << std::endl;
+                warps[currentWarpId].setPipelineStage(PipelineStage::DONE);
+            }
+        } else {
+            warps[currentWarpId].execute(); // Execute the instruction of the warp
+            warps[currentWarpId].setPipelineStage(PipelineStage::DONE);
+        }
+        
     } 
 
     std::cout << "(ComputeUnit: " << smId << ") Completed execution for warp ID: " << warps[currentWarpId].getId() 
@@ -65,4 +87,15 @@ void ComputeUnit::calculateNextWarpId() {
     if (currentWarpId >= warps.size()) {
         currentWarpId = 0; // Loop back to the first warp
     }
+}
+
+bool ComputeUnit::detectDivergence( Warp &warp){
+    // For simplicity, we will just check if the active mask has more than one thread active and the current instruction is a branch instruction
+    // In real implementation, this would be more complex and would need to consider the specific instruction and the state of each thread in the warp
+    Instruction instr = warp.getCurrentInstruction();
+    if (instr.type == InstructionType::BRANCH) {
+        warp.setDivergent(); // Mark the warp as divergent
+        return true; // Divergence detected
+    }
+    return false; // No divergence
 }

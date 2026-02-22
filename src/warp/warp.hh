@@ -88,10 +88,11 @@ class Warp {
     std::vector<reconvergencePoint> reconvergenceStack;
     WarpState state;
     PipelineStage pipelineStage;
+    bool isBranchDivergent = false; // Flag to indicate if the warp is currently divergent due to a branch instruction
 
     public:
     Warp();
-    Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState = WarpState::READY, PipelineStage pipelineStage = PipelineStage::NOT_STARTED);
+    Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState = WarpState::READY, PipelineStage pipelineStage = PipelineStage::NOT_STARTED, bool isBranchDivergent = false);
 
      // Getter and Setter methods
     int getId() const;
@@ -105,10 +106,17 @@ class Warp {
     std :: string getPipelineStageString() const;
     const ActiveMask& getActiveMask() const;
     WarpState getState() const { return state; }
-
+    bool isDivergent() const { return isBranchDivergent; }
+    void setDivergent() { isBranchDivergent = true; }
     // method to execute the instruction of the warp - to be called by ComputeUnit during execution
     void execute();
     std::string getInstructionTypeString(Instruction inst) const;
+
+    // Methods to manage reconvergence points
+    void addReconvergencePoint(int pc, const ActiveMask& mask);
+    void peekReconvergencePoint() const;
+    void popReconvergencePoint();
+    size_t getReconvergenceStackSize() const;
 };
 
 

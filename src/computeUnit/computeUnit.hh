@@ -76,6 +76,7 @@ class ComputeUnit {
 
         /// Method to calculate the next warp ID to execute based on round-robin scheduling
         void calculateNextWarpId();
+        bool detectDivergence(Warp &warp); // Method to detect if a warp is divergent based on its active mask and current instruction  
         
 };
 

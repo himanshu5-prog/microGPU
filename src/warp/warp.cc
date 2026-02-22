@@ -1,12 +1,12 @@
 #include "warp.hh"
 
-Warp::Warp() : id(0), pc(0), state(WarpState::READY), pipelineStage(PipelineStage::NOT_STARTED) {
+Warp::Warp() : id(0), pc(0), state(WarpState::READY), pipelineStage(PipelineStage::NOT_STARTED), isBranchDivergent(false) {
     std::cout << "Warp created with id: " << id << std::endl;
     activeMask.set();  // All threads active by default 
 }
 
-Warp::Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState, PipelineStage pipelineStage)
-    : id(warpId), pc(0), threads(threadGroup), state(warpState), pipelineStage(pipelineStage) {
+Warp::Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState, PipelineStage pipelineStage, bool isBranchDivergent_)
+    : id(warpId), pc(0), threads(threadGroup), state(warpState), pipelineStage(pipelineStage), isBranchDivergent(isBranchDivergent_) {
     std::cout << "Warp created with id: " << id << std::endl;
     activeMask.set();  // All threads active by default
 }
@@ -100,4 +100,29 @@ void Warp::execute(){
             std::cout << "(Warp " << id << ") Thread " << threads[t].getId() << " is inactive and will not execute instruction." << std::endl;
         }
     }
+}
+
+void Warp::addReconvergencePoint(int pc, const ActiveMask& mask) {
+    reconvergenceStack.emplace_back(pc, mask);
+}
+
+void Warp::peekReconvergencePoint() const {
+    if (!reconvergenceStack.empty()) {
+        const reconvergencePoint& top = reconvergenceStack.back();
+        std::cout << "(Warp " << id << ") Top Reconvergence Point - PC: " << top.pc << ", Active Mask: " << top.mask << std::endl;
+    } else {
+        std::cout << "(Warp " << id << ") Reconvergence stack is empty." << std::endl;
+        }
+}
+
+void Warp::popReconvergencePoint() {
+    if (!reconvergenceStack.empty()) {
+        reconvergenceStack.pop_back();
+    } else {
+        std::cout << "(Warp " << id << ") Cannot pop from empty reconvergence stack." << std::endl;
+    }
+}
+
+size_t Warp::getReconvergenceStackSize() const {
+    return reconvergenceStack.size();
 }
