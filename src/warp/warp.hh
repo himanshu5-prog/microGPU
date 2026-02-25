@@ -151,6 +151,10 @@ class Warp {
     // Method to get the size of the reconvergence stack, useful for checking if all reconvergence points have been processed
     size_t getReconvergenceStackSize() const;
 
+    /**
+     * @brief Get the active mask from the top reconvergence point on the stack
+     * @return ActiveMask The active mask from the top reconvergence point
+     */
     std::bitset<WARP_THREAD_COUNT> getActiveMaskFromReconvergenceStack() const;
 };
 
