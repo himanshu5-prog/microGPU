@@ -28,4 +28,4 @@ s
 
 ## Documentation
 
-Built API docs (Doxygen): [HTML documentation](https://himanshu5-prog.github.io/microGPU/index.html)
+Built API docs (Doxygen): [Documentation](https://himanshu5-prog.github.io/microGPU)
