@@ -2,7 +2,7 @@
 
 Warp::Warp() : id(0), pc(0), state(WarpState::READY), pipelineStage(PipelineStage::NOT_STARTED), isBranchDivergent(false) {
     std::cout << "Warp created with id: " << id << std::endl;
-    activeMask.set();  // All threads active by default 
+    activeMask.set();  // All threads active by default
 }
 
 Warp::Warp(int warpId, const ThreadGroup& threadGroup, WarpState warpState, PipelineStage pipelineStage, bool isBranchDivergent_)
@@ -66,7 +66,8 @@ void Warp::execute(){
         std::cout << "(Warp " << id << ") No active threads to execute instruction." << std::endl;
         return;
     }
-
+    int threadExecuted = 0;
+    std:: cout << "(Warp " << id << ") Executing instruction: " << getInstructionTypeString(instr) << " with active mask: " << activeMask << std::endl;
     for (int t = 0; t < WARP_THREAD_COUNT; ++t) {
         // Check if the thread is active based on the active mask
         if (activeMask.test(t)) {
@@ -95,11 +96,13 @@ void Warp::execute(){
                 // Branches will be handled in future iterations when we implement control flow and reconvergence
             }
             std::cout << "(Warp " << id << ") Thread " << threads[t].getId() << " is active and executed instruction: " << getInstructionTypeString(instr) << std::endl;
+            threadExecuted += 1;
         } else {
 
             std::cout << "(Warp " << id << ") Thread " << threads[t].getId() << " is inactive and will not execute instruction." << std::endl;
         }
     }
+    std::cout << "(Warp " << id << ") Executed instruction for " << threadExecuted << " threads." << std::endl;
 }
 
 void Warp::addReconvergencePoint(int pc, const ActiveMask& mask) {
@@ -125,4 +128,13 @@ void Warp::popReconvergencePoint() {
 
 size_t Warp::getReconvergenceStackSize() const {
     return reconvergenceStack.size();
+}
+
+std::bitset<WARP_THREAD_COUNT> Warp::getActiveMaskFromReconvergenceStack() const {
+    if (!reconvergenceStack.empty()) {
+        return reconvergenceStack.back().mask;
+    } else {
+        std::cout << "(Warp " << id << ") Reconvergence stack is empty. Returning default active mask." << std::endl;
+        return std::bitset<WARP_THREAD_COUNT>().set(); // Default to all threads active if stack is empty
+    }
 }

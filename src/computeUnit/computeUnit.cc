@@ -36,10 +36,10 @@ void ComputeUnit::execute(){
     if (warps[currentWarpId].getPipelineStage() == PipelineStage::NOT_STARTED) {
         if (detectDivergence(warps[currentWarpId])) {
             std::cout << "(ComputeUnit: " << smId << ") Divergence detected for warp ID: " << warps[currentWarpId].getId() << std::endl;
-            std::bitset<WARP_THREAD_COUNT> mask = 0x00FF;
+            std::bitset<WARP_THREAD_COUNT> mask = 0x0000FFFF;
             warps[currentWarpId].addReconvergencePoint(0, mask);
             
-            mask = 0xFF00;
+            mask = 0xFFFF0000;
             warps[currentWarpId].addReconvergencePoint(10, mask);
         }
         warps[currentWarpId].setPipelineStage(PipelineStage::STAGE_0);
@@ -53,6 +53,8 @@ void ComputeUnit::execute(){
 
         if (warps[currentWarpId].isDivergent()) {
             warps[currentWarpId].peekReconvergencePoint();
+            warps[currentWarpId].setActiveMask(warps[currentWarpId].getActiveMaskFromReconvergenceStack());
+            warps[currentWarpId].execute(); // Execute the instruction of the warp for the current reconvergence point
             warps[currentWarpId].setPipelineStage(PipelineStage::STAGE_0);
             std::cout << "(ComputeUnit: " << smId << ") Popping reconvergence point for warp ID: " << warps[currentWarpId].getId() << std::endl;
             warps[currentWarpId].popReconvergencePoint();
@@ -93,7 +95,7 @@ bool ComputeUnit::detectDivergence( Warp &warp){
     // For simplicity, we will just check if the active mask has more than one thread active and the current instruction is a branch instruction
     // In real implementation, this would be more complex and would need to consider the specific instruction and the state of each thread in the warp
     Instruction instr = warp.getCurrentInstruction();
-    if (instr.type == InstructionType::BRANCH) {
+    if (instr.isBranch) {
         warp.setDivergent(); // Mark the warp as divergent
         return true; // Divergence detected
     }

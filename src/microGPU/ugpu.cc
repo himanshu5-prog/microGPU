@@ -35,7 +35,7 @@ void MicroGPU::createGlobalWarpCollectionTest() {
         Warp warp(i, threadGroup);
 
         // Set up a simple instruction for the warp ( ADD R0, R1, R2)
-        warp.setCurrentInstruction(Instruction(ADD, 0, 1, 2)); // R0 = R1 + R2
+        warp.setCurrentInstruction(Instruction(ADD, 0, 1, 2, false)); // R0 = R1 + R2
         // Initialize warp state
         warp.setPipelineStage(PipelineStage::NOT_STARTED);
         // Set PC and active mask for the warp
@@ -47,7 +47,15 @@ void MicroGPU::createGlobalWarpCollectionTest() {
     }
     // Adding one more warp with branch instruction to test divergence handling
     Warp divergentWarp(5, ThreadGroup(), READY, NOT_STARTED, true);
-    divergentWarp.setCurrentInstruction(Instruction(InstructionType::BRANCH, 0, 1, 2));
+    int k = 5;
+    ThreadGroup threadGroup;
+
+    for (int t = 0; t < WARP_THREAD_COUNT; ++t) {
+        threadGroup[t] = Thread(k * WARP_THREAD_COUNT + t, ACTIVE);
+    }
+    divergentWarp = Warp(5, threadGroup, READY, NOT_STARTED, true);
+    divergentWarp.setCurrentInstruction(Instruction(InstructionType::ADD, 0, 1, 2, true));
+    //divergentWarp.getCurrentInstruction().isBranch = true;
     addWarpToGlobalCollection(divergentWarp);
     std::cout << "(microGPU) Branch warp with ID " << divergentWarp.getId() << " added to global collection." << std::endl;
     std::cout << "(microGPU) Total warps in global collection: " << getGlobalWarpCollectionSize() << std::endl;
