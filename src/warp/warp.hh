@@ -30,10 +30,11 @@ struct Instruction {
     int dest;
     int src1;
     int src2;
+    bool isBranch;
 
-    Instruction(InstructionType t, int d, int s1, int s2)
-        : type(t), dest(d), src1(s1), src2(s2) {}
-    Instruction() : type(ADD), dest(0), src1(0), src2(0) {}
+    Instruction(InstructionType t, int d, int s1, int s2, bool isBranch = false)
+        : type(t), dest(d), src1(s1), src2(s2), isBranch(isBranch) {}
+    Instruction() : type(ADD), dest(0), src1(0), src2(0), isBranch(false) {}
 
 };
 
@@ -149,6 +150,8 @@ class Warp {
 
     // Method to get the size of the reconvergence stack, useful for checking if all reconvergence points have been processed
     size_t getReconvergenceStackSize() const;
+
+    std::bitset<WARP_THREAD_COUNT> getActiveMaskFromReconvergenceStack() const;
 };
 
 
