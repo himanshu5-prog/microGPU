@@ -6,9 +6,9 @@
  [![GitHub issues](https://img.shields.io/github/issues/himanshu5-prog/microGPU)](https://github.com/himanshu5-prog/microGPU/issues)
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-microGPU is a small C++ project that implements a functional model of a GPU to explore and understand GPU architecture. The repository defines classes for threads and warps and builds up to compute units and a scheduler; the README includes badges linking to documentation, CI status, issue tracker, and license.
+microGPU is a small C++ project that implements a functional model of a GPU to explore and understand GPU architecture. The repository defines classes for threads and warps and builds up to compute units and a scheduler.
 
-Current functionality: the project accepts warps into a global collection and schedules them onto compute units, which execute warps in a round-robin fashion. Tests verify that warps are created, assigned, and progressed through pipeline stages; logs record pipeline stage changes with timestamps to validate behavior.
+Current functionality: microGPU accepts warps into a global collection and schedules them onto compute units, which execute warps in a round-robin fashion. Tests verify that warps are created, assigned, and progressed through pipeline stages; logs record pipeline stage changes with timestamps to validate behavior.
 
 I have added logic to handle simple case of divergence as well.
 
