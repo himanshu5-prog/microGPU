@@ -29,3 +29,7 @@ s
 ## Documentation
 
 Built API docs (Doxygen): [Documentation](https://himanshu5-prog.github.io/microGPU)
+
+## Block diagram
+
+![microGPU Architecture](doc/image/microGPU.png)
